@@ -59,3 +59,4 @@ console.log("BAŞVURU PAYLOAD:", JSON.stringify(payload));
     return new Response(JSON.stringify({ error: "Başvuru işlenirken bir hata oluştu." }), { status: 400, headers });
   }
 };
+console.log("DISCORD YANITI:", response.status, await response.text());
