@@ -45,7 +45,7 @@ export default async (request) => {
         timestamp: new Date().toISOString()
       }]
     };
-
+console.log("BAŞVURU PAYLOAD:", JSON.stringify(payload));
     const response = await fetch(webhook, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
