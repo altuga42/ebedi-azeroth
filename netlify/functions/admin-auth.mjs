@@ -1,4 +1,4 @@
-import { isAdmin, cookieHeader } from "./_shared.mjs";
+import { cookieHeader } from "./_shared.mjs";
 
 const response = (status, data, headers = {}) =>
   new Response(JSON.stringify(data), {
@@ -9,9 +9,9 @@ const response = (status, data, headers = {}) =>
     },
   });
 
-export default async function handler(event) {
+export default async function handler(request) {
   try {
-    if (event.httpMethod === "DELETE") {
+    if (request.method === "DELETE") {
       return response(
         200,
         { ok: true },
@@ -19,26 +19,28 @@ export default async function handler(event) {
       );
     }
 
-    if (event.httpMethod !== "POST") {
-      return response(405, { error: "Method not allowed" }, {
-        Allow: "POST, DELETE",
-      });
+    if (request.method !== "POST") {
+      return response(
+        405,
+        { error: "Method not allowed" },
+        { Allow: "POST, DELETE" }
+      );
     }
 
     let body;
     try {
-      body = JSON.parse(event.body || "{}");
+      body = await request.json();
     } catch {
       return response(400, { error: "Invalid JSON body" });
     }
 
-    const password = body?.password;
-
     if (!process.env.ADMIN_PASSWORD) {
-      return response(500, { error: "ADMIN_PASSWORD is not configured" });
+      return response(500, {
+        error: "ADMIN_PASSWORD is not configured",
+      });
     }
 
-    if (password !== process.env.ADMIN_PASSWORD) {
+    if (body?.password !== process.env.ADMIN_PASSWORD) {
       return response(401, { error: "Invalid password" });
     }
 
