@@ -32,11 +32,24 @@
 .member-role{display:inline-block;margin:3px 5px 5px 0;padding:6px 9px;border:1px solid #6a3425;background:#170b09;color:#f3c48b;font:11px Arial,sans-serif;letter-spacing:1px}
 .admin-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px;border-bottom:1px solid #4a241b;color:#eee}
 .admin-row button{margin:3px}
+ 
+.members-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+.members-grid{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));}
+.member-card{cursor:pointer;transition:border-color .18s,transform .18s}
+.member-card:hover{transform:translateY(-3px);border-color:#e6ad65}
+.member-card.selected{border:2px solid #f6d49b;box-shadow:0 0 0 2px #8f1c1355,0 10px 28px #0008}
+.member-preview{position:sticky;top:110px;min-height:300px;padding:12px}
+.member-preview img{display:block;width:100%;max-height:72vh;object-fit:contain;background:#090707;border:1px solid #7b3825}
+.member-preview p{color:#d8c9bf;line-height:1.6;text-align:center;padding:25px 10px}
+@media(max-width:760px){.members-layout{grid-template-columns:1fr}.member-preview{position:static;min-height:200px}.member-preview img{max-height:65vh}}
 </style></head><body><header class="top"><div class="wrap nav"><a class="brand" href="#home">☠ EBEDİ AZEROTH<small>SAVAŞ · DİSİPLİN · KARDEŞLİK</small></a><nav class="links"><a href="#home">Ana Sayfa</a><a href="#guild">Guild</a><a href="#members">Üyeler</a><a href="#raid-calendar">Raid Takvimi</a><a href="#media">Foto &amp; Video</a><a href="#boss-kills">Boss Kill</a><a href="#polls">Anketler</a><a href="#rules">Kurallar</a><a href="#apply">Başvuru</a><a href="#discord">Discord</a></nav><a class="btn" href="https://discord.gg/r7pJCgecx" target="_blank">Discord'a Katıl</a></div></header><main><section class="hero" id="home"><div class="eyebrow">WORLD OF WARCRAFT • HORDE GUILD</div><h1>EBEDİ AZEROTH</h1><div class="tag">SAVAŞ, DİSİPLİN, KARDEŞLİK</div><p>Güçlü bir topluluk, unutulmaz zaferler.<br>Azeroth'ta sen de yerini al.</p><div class="actions"><a class="btn" href="#apply">⚔ HEMEN BAŞVUR</a><a class="btn secondary" href="#guild">GUILD'İMİZİ KEŞFET</a></div><h2 style="color:#e33a2b;letter-spacing:5px">FOR THE HORDE!</h2></section><div class="wrap features"><div class="feature"><b>⚔ RAID TAKIMLARI</b><span>Düzenli organizasyonlar</span></div><div class="feature"><b>♟ GÜÇLÜ KADRO</b><span>Birlikte daha güçlüyüz</span></div><div class="feature"><b>☠ AKTİF TOPLULUK</b><span>Her zaman yanındayız</span></div><div class="feature"><b>🔥 YENİ MACERALAR</b><span>Sürekli gelişen içerik</span></div><div class="feature"><b>🛡 PvP & PvE</b><span>Horde için mücadele</span></div></div><div class="wrap"><div class="title"><h2>HORDE'UN GÜCÜYLE</h2><p>Birlikte savaşır, birlikte yükseliriz.</p></div><div class="grid"><section class="panel" id="guild"><h3>🐺 Ebedi Azeroth'a Hoş Geldin</h3><p>Azeroth'un efsaneleri yeniden yazılıyor. Dostluk, strateji ve unutulmaz maceralar seni bekliyor. Horde'un gücü, seninle daha da büyüyor.</p><ul><li>Raid ve grup etkinlikleri</li><li>Yeni oyunculara destek</li><li>Dayanışmacı guild ortamı</li></ul><a class="btn" href="#apply">Aramıza Katıl</a></section><section class="panel" id="discord"><h3>📯 Discord Sunucumuz</h3><p>Etkinliklerden haberdar ol, Horde oyuncularıyla tanış.</p><a class="btn" href="https://discord.gg/r7pJCgecx" target="_blank">DISCORD'A KATIL</a><p class="note">Savaş · Disiplin · Kardeşlik</p></section></div>
 
 <section id="members">
   <div class="title"><h2>ÜYELER</h2><p>Ebedi Azeroth karakter tanıtımları.</p></div>
-  <div id="members-list" class="members-grid"><article class="panel"><p>Görseller yükleniyor...</p></article></div>
+  <div class="members-layout">
+     <div id="members-list" class="members-grid"><article class="panel"><p>Görseller yükleniyor...</p></article></div>
+     <aside id="member-preview" class="member-preview panel" aria-live="polite"><p>Bir karakter görseline tıklayarak burada büyük görüntüleyebilirsin.</p></aside>
+   </div>
   <div class="panel" id="member-admin" style="display:none;margin-top:18px">
     <h3>Görsel Yönetimi</h3>
     <div id="admin-login">
@@ -102,7 +115,11 @@ const msg=document.getElementById('admin-message'),fileInput=document.getElement
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 async function api(url,opts={}){const r=await fetch(url,{credentials:'same-origin',...opts});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.error||'İşlem başarısız');return d}
 let items=[];
-function render(){list.innerHTML=items.length?items.map(x=>`<article class="member-card"><img class="member-art" src="${esc(x.url)}" alt="Ebedi Azeroth karakter görseli"></article>`).join(''):'<article class="panel"><p>Henüz görsel yüklenmedi.</p></article>';
+function render(){list.innerHTML=items.length?items.map((x,i)=>`<article class="member-card${i===0?' selected':''}" data-preview="${i}" tabindex="0" role="button" aria-label="Karakter görselini büyük göster"><img class="member-art" src="${esc(x.url)}" alt="Ebedi Azeroth karakter görseli"></article>`).join(''):'<article class="panel"><p>Henüz görsel yüklenmedi.</p></article>';
+const preview=document.getElementById('member-preview');
+function selectImage(i){const x=items[i];if(!x)return;list.querySelectorAll('.member-card').forEach((card,j)=>card.classList.toggle('selected',j===i));preview.innerHTML=`<img src="${esc(x.url)}" alt="Seçili Ebedi Azeroth karakter görseli">`;}
+list.querySelectorAll('[data-preview]').forEach(card=>{const choose=()=>selectImage(Number(card.dataset.preview));card.addEventListener('click',choose);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose()}})});
+if(items.length)selectImage(0);else preview.innerHTML='<p>Bir karakter görseline tıklayarak burada büyük görüntüleyebilirsin.</p>';
 const box=document.getElementById('admin-members');box.innerHTML=items.map(x=>`<div class="admin-row"><img src="${esc(x.url)}" alt="" style="width:90px;height:60px;object-fit:cover"><button class="btn secondary" data-remove="${esc(x.id)}">Görseli kaldır</button></div>`).join('');
 box.querySelectorAll('[data-remove]').forEach(b=>b.onclick=async()=>{if(!confirm('Bu görseli kaldırmak istiyor musun?'))return;try{await api('/.netlify/functions/member-gallery?id='+encodeURIComponent(b.dataset.remove),{method:'DELETE'});await load();msg.textContent='Görsel kaldırıldı.'}catch(e){msg.textContent=e.message}})}
 async function load(){try{items=(await api('/.netlify/functions/member-gallery')).images||[];render()}catch(e){list.innerHTML='<article class="panel"><p>Görseller yüklenemiyor.</p></article>'}}
