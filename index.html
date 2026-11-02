@@ -81,17 +81,15 @@
 .member-page{min-width:38px;padding:9px 12px;border:1px solid #71351f;border-radius:6px;background:#160d0a;color:#f4dfc6;cursor:pointer}
 .member-page.active{background:#9e2c18;border-color:#f1a14c}
 @media(max-width:760px){.members-layout{grid-template-columns:1fr}.members-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}.member-preview{height:auto;min-height:220px}.member-preview img{height:auto;max-height:65vh}}
-/* Member artwork: preserve each image's original aspect ratio; never crop player details */
-.members-layout{align-items:start}
-.members-grid{grid-template-rows:auto;align-content:start}
-.member-card{aspect-ratio:3/2;overflow:hidden}
-.member-art{width:100%;height:100%;aspect-ratio:3/2;object-fit:contain;object-position:center;background:#100b08}
-.member-preview{box-sizing:border-box;min-width:0;min-height:0;height:auto;align-self:start;overflow:visible}
-.member-preview img{display:block;width:100%;height:auto;max-width:100%;max-height:none;object-fit:contain;object-position:center;background:transparent;border:1px solid #7b3825;box-sizing:border-box}
+/* Selected member artwork: fill the full 2x2-card preview area */
+.members-layout{align-items:stretch}
+.members-grid{align-content:stretch}
+.member-preview{box-sizing:border-box;min-width:0;min-height:0;align-self:stretch}
+.member-preview img{display:block;width:100%;height:100%;max-width:100%;max-height:none;object-fit:cover;object-position:center;background:transparent;border:1px solid #7b3825;box-sizing:border-box}
 @media(max-width:760px){
  .members-layout{grid-template-columns:1fr}
- .member-preview{height:auto;min-height:0;aspect-ratio:auto}
- .member-preview img{height:auto;max-height:none;object-fit:contain}
+ .member-preview{height:auto;min-height:0;aspect-ratio:1/1}
+ .member-preview img{height:100%;max-height:none;object-fit:contain}
 }
 
 </style>
@@ -112,6 +110,15 @@ main { background: transparent; }
   background-color: rgba(16, 9, 8, .84) !important;
 }
 @media (max-width:760px) { body { background-attachment: scroll; } }
+
+/* Member gallery layout refinement: preserve each uploaded artwork without cropping. */
+.members-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;gap:18px}
+.members-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto;align-content:start;gap:12px}
+.member-card{aspect-ratio:auto;min-width:0;display:block;overflow:hidden}
+.member-art{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;object-position:center;border:0;background:transparent}
+.member-preview{position:relative;top:auto;align-self:stretch;min-width:0;min-height:0;height:auto;padding:0;display:flex;align-items:center;justify-content:center;overflow:visible}
+.member-preview img{display:block;width:100%;height:auto;max-width:100%;max-height:none;min-height:0;object-fit:contain;object-position:center;background:transparent;border:0;box-sizing:border-box}
+@media(max-width:760px){.members-layout{grid-template-columns:1fr}.members-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.member-preview{height:auto;min-height:0;aspect-ratio:auto}.member-preview img{height:auto;max-height:none;object-fit:contain}}
 </style>
 
 </head><body><header class="top"><div class="wrap nav"><a class="brand" href="#home">☠ EBEDİ AZEROTH<small>SAVAŞ · DİSİPLİN · KARDEŞLİK</small></a><nav class="links"><a href="#home">Ana Sayfa</a><a href="#guild">Guild</a><a href="#members">Üyeler</a><a href="#raid-calendar">Raid Takvimi</a><a href="#media">Foto &amp; Video</a><a href="#polls">Anketler</a><a href="#rules">Kurallar</a><a href="#apply">Başvuru</a><a href="#discord">Discord</a></nav><a class="btn" href="https://discord.gg/r7pJCgecx" target="_blank">Discord'a Katıl</a></div></header><main><section class="hero" id="home"><div class="eyebrow">WORLD OF WARCRAFT • HORDE GUILD</div><h1>EBEDİ AZEROTH</h1><div class="tag">SAVAŞ, DİSİPLİN, KARDEŞLİK</div><p>Güçlü bir topluluk, unutulmaz zaferler.<br>Azeroth'ta sen de yerini al.</p><div class="actions"><a class="btn" href="#apply">⚔ HEMEN BAŞVUR</a><a class="btn secondary" href="#guild">GUILD'İMİZİ KEŞFET</a></div><h2 style="color:#e33a2b;letter-spacing:5px">FOR THE HORDE!</h2></section><div class="wrap features"><div class="feature"><b>⚔ RAID TAKIMLARI</b><span>Düzenli organizasyonlar</span></div><div class="feature"><b>♟ GÜÇLÜ KADRO</b><span>Birlikte daha güçlüyüz</span></div><div class="feature"><b>☠ AKTİF TOPLULUK</b><span>Her zaman yanındayız</span></div><div class="feature"><b>🔥 YENİ MACERALAR</b><span>Sürekli gelişen içerik</span></div><div class="feature"><b>🛡 PvP & PvE</b><span>Horde için mücadele</span></div></div><div class="wrap"><div class="title"><h2>HORDE'UN GÜCÜYLE</h2><p>Birlikte savaşır, birlikte yükseliriz.</p></div><div class="grid"><section class="panel" id="guild"><h3>🐺 Ebedi Azeroth'a Hoş Geldin</h3><p>Azeroth'un efsaneleri yeniden yazılıyor. Dostluk, strateji ve unutulmaz maceralar seni bekliyor. Horde'un gücü, seninle daha da büyüyor.</p><ul><li>Raid ve grup etkinlikleri</li><li>Yeni oyunculara destek</li><li>Dayanışmacı guild ortamı</li></ul><a class="btn" href="#apply">Aramıza Katıl</a></section><section class="panel" id="discord"><h3>📯 Discord Sunucumuz</h3><p>Etkinliklerden haberdar ol, Horde oyuncularıyla tanış.</p><a class="btn" href="https://discord.gg/r7pJCgecx" target="_blank">DISCORD'A KATIL</a><p class="note">Savaş · Disiplin · Kardeşlik</p></section></div>
