@@ -70,60 +70,17 @@
 @media(max-width:600px){.rules-section{padding:0 8px}.rules-head{gap:10px}.rules-emblem{width:42px;height:42px;font-size:25px}.rules-kicker{font-size:9px;letter-spacing:1.5px}.rules-head h2{font-size:25px;letter-spacing:1px}.rules-intro{font-size:14px;padding:16px 14px}.rules-grid{grid-template-columns:1fr}.rule-card{grid-template-columns:54px minmax(0,1fr);padding:14px;min-height:unset}.rule-icon{width:48px;height:48px;font-size:23px}.rule-card h3{font-size:16px}.rule-card p{font-size:13px}.rules-footer{padding:15px;gap:12px}.rules-footer-mark{width:42px;height:42px;flex-basis:42px}.rules-footer p{font-size:14px}}
 
 
-/* Members: four square cards per page, preview spans the full 2x2 grid height */
-.members-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;gap:18px}
-.members-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:12px;align-content:stretch}
-.member-card{min-width:0;aspect-ratio:1/1;display:flex;align-items:stretch}
-.member-art{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;border:0}
-.member-preview{position:relative;top:auto;min-height:0;height:100%;padding:12px;display:flex;align-items:stretch;justify-content:center;overflow:hidden}
-.member-preview img{width:100%;height:100%;max-height:none;min-height:0;object-fit:contain;align-self:stretch}
+/* Members layout: four square cards at left; full-height, uncropped preview at right */
+.members-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:stretch}
+.members-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2, minmax(0,1fr));gap:12px;align-content:stretch;min-width:0}
+.member-card{min-width:0;aspect-ratio:1/1;display:block;overflow:hidden}
+.member-art{display:block;width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;object-position:center;border:0}
+.member-preview{position:relative;top:auto;align-self:stretch;box-sizing:border-box;min-width:0;min-height:0;height:100%;padding:12px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.member-preview img{display:block;width:100%;height:100%;max-width:100%;max-height:none;min-height:0;object-fit:contain;object-position:center;background:#090707;border:1px solid #7b3825;box-sizing:border-box}
 .member-pagination{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0}
 .member-page{min-width:38px;padding:9px 12px;border:1px solid #71351f;border-radius:6px;background:#160d0a;color:#f4dfc6;cursor:pointer}
 .member-page.active{background:#9e2c18;border-color:#f1a14c}
-@media(max-width:760px){.members-layout{grid-template-columns:1fr}.members-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}.member-preview{height:auto;min-height:220px}.member-preview img{height:auto;max-height:65vh}}
-/* Selected member artwork: fill the full 2x2-card preview area */
-.members-layout{align-items:stretch}
-.members-grid{align-content:stretch}
-.member-preview{box-sizing:border-box;min-width:0;min-height:0;align-self:stretch}
-.member-preview img{display:block;width:100%;height:100%;max-width:100%;max-height:none;object-fit:cover;object-position:center;background:transparent;border:1px solid #7b3825;box-sizing:border-box}
-@media(max-width:760px){
- .members-layout{grid-template-columns:1fr}
- .member-preview{height:auto;min-height:0;aspect-ratio:1/1}
- .member-preview img{height:100%;max-height:none;object-fit:contain}
-}
-
-
-/* Member gallery layout fix: 4 thumbnails (2x2) beside a proportionate preview */
-#members .members-layout{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:18px;
-  align-items:start;
-}
-#members #members-list.members-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-  min-width:0;
-}
-#members .member-card{min-width:0;width:100%;}
-#members .member-art{
-  display:block;width:100%;aspect-ratio:3/2;object-fit:cover;
-}
-#members #member-preview{
-  position:relative;top:auto;min-width:0;min-height:0;
-  padding:10px;display:flex;align-items:center;justify-content:center;
-}
-#members #member-preview img{
-  display:block;width:100%;height:auto;max-height:none;
-  aspect-ratio:3/2;object-fit:contain;background:#090707;
-}
-@media(max-width:760px){
-  #members .members-layout{grid-template-columns:1fr;}
-  #members #member-preview{position:static;}
-  #members #member-preview img{max-height:65vh;}
-}
-
+@media(max-width:760px){.members-layout{grid-template-columns:1fr}.members-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}.member-preview{height:auto;min-height:0;aspect-ratio:1/1}.member-preview img{height:100%;max-height:none;object-fit:contain}}
 </style>
 <style id="azeroth-brighter-background">
 /* Scenic background is for the page body only; the hero's existing artwork remains untouched. */
