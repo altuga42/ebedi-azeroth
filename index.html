@@ -92,6 +92,38 @@
  .member-preview img{height:100%;max-height:none;object-fit:contain}
 }
 
+
+/* Member gallery layout fix: 4 thumbnails (2x2) beside a proportionate preview */
+#members .members-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:18px;
+  align-items:start;
+}
+#members #members-list.members-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  min-width:0;
+}
+#members .member-card{min-width:0;width:100%;}
+#members .member-art{
+  display:block;width:100%;aspect-ratio:3/2;object-fit:cover;
+}
+#members #member-preview{
+  position:relative;top:auto;min-width:0;min-height:0;
+  padding:10px;display:flex;align-items:center;justify-content:center;
+}
+#members #member-preview img{
+  display:block;width:100%;height:auto;max-height:none;
+  aspect-ratio:3/2;object-fit:contain;background:#090707;
+}
+@media(max-width:760px){
+  #members .members-layout{grid-template-columns:1fr;}
+  #members #member-preview{position:static;}
+  #members #member-preview img{max-height:65vh;}
+}
+
 </style>
 <style id="azeroth-brighter-background">
 /* Scenic background is for the page body only; the hero's existing artwork remains untouched. */
