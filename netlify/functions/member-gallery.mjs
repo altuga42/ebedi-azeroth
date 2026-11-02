@@ -17,15 +17,20 @@ export default async function handler(request) {
     const id = url.searchParams.get("id");
     const method = request.method;
 
-    // Görselin kendisini getir
     if (method === "GET" && id) {
-      const image = (await readGallery()).find((x) => x.id === id);
-      if (!image) return new Response("Not found", { status: 404 });
+      const image = (await readGallery()).find((item) => item.id === id);
+
+      if (!image) {
+        return new Response("Not found", { status: 404 });
+      }
 
       const blob = await store().get(image.key, { type: "arrayBuffer" });
-      if (!blob) return new Response("Not found", { status: 404 });
 
-      return new Response(blob, {
+      if (!blob) {
+        return new Response("Not found", { status: 404 });
+      }
+
+      return new Response(Buffer.from(blob), {
         status: 200,
         headers: {
           "Content-Type": image.mime,
@@ -34,7 +39,6 @@ export default async function handler(request) {
       });
     }
 
-    // Galerideki görselleri listele
     if (method === "GET") {
       const images = await readGallery();
 
@@ -46,12 +50,10 @@ export default async function handler(request) {
       });
     }
 
-    // Yükleme ve silme işlemleri yönetici girişi gerektirir
     if (!isAdmin(request)) {
       return json(401, { error: "Yönetici girişi gerekli." });
     }
 
-    // Yeni görsel yükle
     if (method === "POST") {
       let body = {};
 
@@ -61,10 +63,7 @@ export default async function handler(request) {
         return json(400, { error: "Geçersiz JSON." });
       }
 
-      if (
-        !body.data ||
-        !/^image\/(jpeg|png|webp)$/.test(body.mime || "")
-      ) {
+      if (!body.data || !/^image\/(jpeg|png|webp)$/.test(body.mime || "")) {
         return json(400, { error: "Görsel verisi geçersiz." });
       }
 
@@ -78,9 +77,7 @@ export default async function handler(request) {
       const imageId = crypto.randomUUID();
       const key = `member-gallery/${imageId}.${ext}`;
 
-      const blobStore = store();
-
-      await blobStore.set(key, bytes, {
+      await store().set(key, bytes, {
         metadata: { contentType: body.mime },
       });
 
@@ -91,30 +88,25 @@ export default async function handler(request) {
       return json(200, { ok: true, id: imageId });
     }
 
-    // Görsel sil
     if (method === "DELETE") {
       if (!id) {
         return json(400, { error: "Görsel kimliği eksik." });
       }
 
       const images = await readGallery();
-      const image = images.find((x) => x.id === id);
+      const image = images.find((item) => item.id === id);
 
       if (image) {
         await store().delete(image.key);
-        await writeGallery(images.filter((x) => x.id !== id));
+        await writeGallery(images.filter((item) => item.id !== id));
       }
 
       return json(200, { ok: true });
     }
 
-    return json(
-      405,
-      { error: "Method not allowed" },
-      { Allow: "GET, POST, DELETE" }
-    );
+    return json(405, { error: "Method not allowed" });
   } catch (error) {
     console.error("member-gallery function error:", error);
-    return json(500, { error: "Internal server error" });
+    return json(500, { error: "Sunucu hatası." });
   }
 }
