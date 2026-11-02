@@ -70,26 +70,75 @@
 @media(max-width:600px){.rules-section{padding:0 8px}.rules-head{gap:10px}.rules-emblem{width:42px;height:42px;font-size:25px}.rules-kicker{font-size:9px;letter-spacing:1.5px}.rules-head h2{font-size:25px;letter-spacing:1px}.rules-intro{font-size:14px;padding:16px 14px}.rules-grid{grid-template-columns:1fr}.rule-card{grid-template-columns:54px minmax(0,1fr);padding:14px;min-height:unset}.rule-icon{width:48px;height:48px;font-size:23px}.rule-card h3{font-size:16px}.rule-card p{font-size:13px}.rules-footer{padding:15px;gap:12px}.rules-footer-mark{width:42px;height:42px;flex-basis:42px}.rules-footer p{font-size:14px}}
 
 
-/* Members: four square cards per page, preview spans the full 2x2 grid height */
-.members-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;gap:18px}
-.members-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:12px;align-content:stretch}
-.member-card{min-width:0;aspect-ratio:1/1;display:flex;align-items:stretch}
-.member-art{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;border:0}
-.member-preview{position:relative;top:auto;min-height:0;height:100%;padding:12px;display:flex;align-items:stretch;justify-content:center;overflow:hidden}
-.member-preview img{width:100%;height:100%;max-height:none;min-height:0;object-fit:contain;align-self:stretch}
+/* Members gallery: preserve full artwork and keep the 2x2 grid proportional */
+.members-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:18px;
+  align-items:stretch;
+}
+.members-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:auto auto;
+  gap:12px;
+  align-content:start;
+  min-width:0;
+}
+.member-card{
+  min-width:0;
+  aspect-ratio:3 / 2;
+  display:block;
+  overflow:hidden;
+}
+.member-art{
+  display:block;
+  width:100%;
+  height:100%;
+  aspect-ratio:3 / 2;
+  object-fit:contain;
+  object-position:center;
+  background:#100909;
+  border:0;
+}
+.member-preview{
+  position:relative;
+  top:auto;
+  min-width:0;
+  min-height:0;
+  height:100%;
+  padding:10px;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.member-preview img{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:none;
+  object-fit:contain;
+  object-position:center;
+  background:transparent;
+  border:1px solid #7b3825;
+  box-sizing:border-box;
+}
 .member-pagination{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0}
 .member-page{min-width:38px;padding:9px 12px;border:1px solid #71351f;border-radius:6px;background:#160d0a;color:#f4dfc6;cursor:pointer}
 .member-page.active{background:#9e2c18;border-color:#f1a14c}
-@media(max-width:760px){.members-layout{grid-template-columns:1fr}.members-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}.member-preview{height:auto;min-height:220px}.member-preview img{height:auto;max-height:65vh}}
-/* Selected member artwork: fill the full 2x2-card preview area */
-.members-layout{align-items:stretch}
-.members-grid{align-content:stretch}
-.member-preview{box-sizing:border-box;min-width:0;min-height:0;align-self:stretch}
-.member-preview img{display:block;width:100%;height:100%;max-width:100%;max-height:none;object-fit:cover;object-position:center;background:transparent;border:1px solid #7b3825;box-sizing:border-box}
 @media(max-width:760px){
  .members-layout{grid-template-columns:1fr}
- .member-preview{height:auto;min-height:0;aspect-ratio:1/1}
+ .members-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto auto}
+ .member-preview{height:auto;min-height:0;aspect-ratio:3 / 2}
  .member-preview img{height:100%;max-height:none;object-fit:contain}
+}
+@media(max-width:460px){
+ .members-grid{grid-template-columns:1fr}
+ .member-card{aspect-ratio:3 / 2}
+ .member-preview{aspect-ratio:3 / 2}
 }
 
 </style>
@@ -239,15 +288,4 @@ $('raid-prev').onclick=()=>{view.setMonth(view.getMonth()-1);render()};$('raid-n
 // Interactive guild polls (browser-local storage; backend sync requires database)
 (()=>{const $=id=>document.getElementById(id);const key='ebediGuildPolls_v1';let filter='all';const today=new Date();const day=(d)=>{const x=new Date(d);return Number.isNaN(x.getTime())?'':x.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'})};const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));let polls;try{polls=JSON.parse(localStorage.getItem(key)||'[]')}catch{polls=[]}if(!polls.length){polls=[{id:'seed-raid',question:'Bu hafta raid hangi gün yapılsın?',category:'raid',options:['Cuma – 20:00','Cumartesi – 20:00','Pazar – 20:00'],deadline:'2026-11-07',votes:{},created:1},{id:'seed-pvp',question:'Bu ay bir premade BG etkinliği düzenleyelim mi?',category:'pvp',options:['Evet, yapalım!','Şimdilik gerek yok.'],deadline:'2026-11-10',votes:{},created:2},{id:'seed-guild',question:'Yeni bir guild etkinliği öneriniz var mı?',category:'guild',options:['Dünya Boss Turu','Guild içi turnuva','Başka bir fikir'],deadline:'2026-11-15',votes:{},created:3}];store()}function store(){localStorage.setItem(key,JSON.stringify(polls))}function name(){let n=localStorage.getItem('ebediPollPlayer');if(!n){n=prompt('Oyunu kaydetmek için karakter adını yaz:');if(n&&n.trim()){n=n.trim().slice(0,60);localStorage.setItem('ebediPollPlayer',n)}}return n||''}function closed(p){return p.deadline && p.deadline < new Date().toISOString().slice(0,10)}function render(){const list=$('poll-list');const arr=polls.filter(p=>filter==='all'||p.category===filter).sort((a,b)=>b.created-a.created);if(!arr.length){list.innerHTML='<div class="panel poll-empty">Bu kategoride henüz anket yok.</div>';return}list.innerHTML=arr.map(p=>{const vals=p.options.map((_,i)=>Object.values(p.votes||{}).filter(v=>v===i).length),total=vals.reduce((a,b)=>a+b,0),mine=localStorage.getItem('ebediPollPlayer')?(p.votes||{})[localStorage.getItem('ebediPollPlayer')]:undefined;const category={raid:'Raid',pvp:'PvP',guild:'Guild'}[p.category]||'Guild';const icon={raid:'⚔',pvp:'☠',guild:'♟'}[p.category]||'♟';return `<article class="poll-card"><div class="poll-art">${icon}</div><div class="poll-content"><div class="poll-card-top"><span class="poll-tag">${category}</span><span class="poll-state ${closed(p)?'closed':''}">${closed(p)?'Kapandı':'Aktif'}</span></div><h3 class="poll-question">${esc(p.question)}</h3><div class="poll-deadline">▦ Bitiş: ${day(p.deadline)||'Belirtilmedi'}</div><div class="poll-options">${p.options.map((o,i)=>{const pct=total?Math.round(vals[i]*100/total):0;return `<label class="poll-option ${mine===i?'chosen':''}"><input type="radio" name="vote-${p.id}" value="${i}" ${mine===i?'checked':''} ${closed(p)?'disabled':''}><span>${esc(o)}</span><span class="poll-bar"><span style="width:${pct}%"></span></span><span class="poll-vote-count">%${pct} (${vals[i]} oy)</span></label>`}).join('')}</div><div class="poll-card-bottom"><span class="poll-total">♟ Toplam ${total} oy</span><div>${!closed(p)?`<button class="btn poll-vote" data-vote="${p.id}">${mine!==undefined?'✓ Oyunu Güncelle':'✓ Oy Ver'}</button>`:''} <button class="btn secondary poll-delete" data-remove="${p.id}" title="Bu tarayıcıdaki anketi sil">Sil</button></div></div></div></article>`}).join('');list.querySelectorAll('[data-vote]').forEach(b=>b.onclick=()=>{const p=polls.find(x=>x.id===b.dataset.vote);const chosen=list.querySelector(`input[name="vote-${p.id}"]:checked`);if(!chosen){alert('Lütfen bir seçenek seç.');return}const n=name();if(!n)return;p.votes=p.votes||{};p.votes[n]=Number(chosen.value);store();render()});list.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{if(confirm('Bu anketi bu tarayıcıdan silmek istiyor musun?')){polls=polls.filter(p=>p.id!==b.dataset.remove);store();render()}})}$('poll-create-toggle').onclick=()=>{$('poll-create-panel').hidden=!$('poll-create-panel').hidden};$('poll-create-cancel').onclick=()=>$('poll-create-panel').hidden=true;$('poll-form').onsubmit=e=>{e.preventDefault();const opts=$('poll-options').value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);if(opts.length<2){$('poll-form-status').textContent='En az iki seçenek yazmalısın.';return}const p={id:Date.now().toString(36),question:$('poll-question').value.trim(),category:$('poll-category').value,options:opts.slice(0,8),deadline:$('poll-deadline').value,votes:{},created:Date.now()};polls.push(p);store();$('poll-form').reset();$('poll-create-panel').hidden=true;filter='all';document.querySelectorAll('[data-poll-filter]').forEach(x=>x.classList.toggle('active',x.dataset.pollFilter==='all'));render()};document.querySelectorAll('[data-poll-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.pollFilter;document.querySelectorAll('[data-poll-filter]').forEach(x=>x.classList.toggle('active',x===b));render()});document.querySelectorAll('[data-quick]').forEach(b=>b.onclick=()=>{$('poll-create-panel').hidden=false;$('poll-question').value=b.dataset.quick+' etkinliği yapalım mı?';$('poll-category').value=b.dataset.quick.includes('PvP')?'pvp':'guild';$('poll-options').value='Evet, yapalım!\nŞimdilik gerek yok.';$('poll-deadline').value='2026-11-15';$('poll-create-panel').scrollIntoView({behavior:'smooth',block:'center'})});$('poll-deadline').min=new Date().toISOString().slice(0,10);render()})();
 </script>
-
-<style id="ea-premium-horde-polish">
-:root{--ea-gold:#f5ce78;--ea-gold2:#ff9d26;--ea-red:#a51d12}
-body{background-color:#090706;color:#f6ead8}
-.top{background:linear-gradient(180deg,rgba(5,4,4,.99),rgba(17,8,6,.97));border-bottom:2px solid transparent;border-image:linear-gradient(90deg,#5d170e,#e5a33e,#fff0a1,#b83a17,#5d170e) 1;box-shadow:0 5px 22px #000b,0 2px 14px #b63b1a33}
-.nav{gap:18px}.brand{color:#ffe18a;font-size:clamp(20px,2vw,30px);text-shadow:0 2px 8px #a43b0e;line-height:1.05}.brand small{color:#f2b843;font-size:11px;letter-spacing:2.5px;margin-top:5px}.links{gap:clamp(9px,1.25vw,18px);font-weight:700}.links a{color:#f5ead8;transition:color .18s,text-shadow .18s}.links a:hover{color:#ffd36e;text-shadow:0 0 12px #f60}
-.btn{background:linear-gradient(180deg,#ef3926,#8c1009 60%,#4c0805);border:1px solid #f6b34c;box-shadow:inset 0 1px #ffdb8a,0 4px 12px #0009,0 0 12px #a62a1433;border-radius:3px;font-size:13px}.btn:hover{filter:brightness(1.15);transform:translateY(-1px)}
-.hero{padding:clamp(70px,9vw,115px) 15px 85px;background-image:linear-gradient(0deg,rgba(7,5,4,.88),rgba(8,5,4,.26) 45%,rgba(8,5,4,.58)),url('azeroth-background.png');background-position:center;background-size:cover;border-bottom:2px solid #a45d25;box-shadow:inset 0 -18px 35px #0008}.hero h1{color:#ffcf55;-webkit-text-stroke:.5px #7d1a0e;text-shadow:0 3px #4c0805,0 0 18px #e76b1a,0 0 35px #000;font-family:Georgia,serif;letter-spacing:2px}.hero .tag{color:#ffe2a0;font-weight:bold}.eyebrow{color:#ffb94b}.features{gap:10px;margin-top:18px}.feature,.panel{border-color:#875126;background:linear-gradient(145deg,rgba(36,20,12,.92),rgba(12,8,7,.94));box-shadow:inset 0 1px #e4a34b33,0 9px 26px #0008}.feature b{color:#ffd16f}.title h2{color:#ffdc91;text-shadow:0 0 14px #8d3b14}.member-card,.media-card,.media-viewer{border-color:#9b622c;box-shadow:inset 0 1px #f8d18b33,0 8px 24px #0009}.member-card.selected{border-color:#ffdc86;box-shadow:0 0 0 2px #bd4b1b66,0 0 20px #e8a34244}.member-page.active,.media-page.active{background:linear-gradient(#d9341d,#781009);border-color:#f5c064}
-@media(max-width:760px){.top{padding:12px 0}.links{gap:10px}.hero{padding:60px 12px}.features{grid-template-columns:repeat(2,minmax(0,1fr))}}
-</style>
-
 </body></html>
