@@ -19,70 +19,93 @@
 .member-art{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;object-position:center;border-bottom:1px solid #7b3825}
 .member-top{padding:20px 22px 18px}
 .member-name{font-size:clamp(28px,4vw,40px)}
- 
-.members-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-.member-card{overflow:hidden;padding:0;background:linear-gradient(145deg,#1b100d,#0b0707);border:1px solid #7b3825;box-shadow:0 10px 28px #0008}
-.member-art{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;object-position:center;border-bottom:1px solid #7b3825;background:#100909}
-.member-top{padding:20px 22px 18px;border-bottom:1px solid #51251c}
-.member-name{margin:0;color:#f8d49d;font:700 clamp(30px,4vw,42px)/1.05 Georgia,serif;letter-spacing:1px}
-.member-surname{display:block;margin-top:6px;color:#c28d65;font:15px Arial,sans-serif;letter-spacing:3px;text-transform:uppercase}
-.member-owner{margin:12px 0 0;color:#d7c5b7;font:13px Arial,sans-serif}
-.member-details{padding:18px 22px 22px}
-.member-details p{margin:8px 0;color:#d8c9bf;line-height:1.6}
-.member-role{display:inline-block;margin:3px 5px 5px 0;padding:6px 9px;border:1px solid #6a3425;background:#170b09;color:#f3c48b;font:11px Arial,sans-serif;letter-spacing:1px}
-.admin-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px;border-bottom:1px solid #4a241b;color:#eee}
-.admin-row button{margin:3px}
- 
-.members-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
-.members-grid{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));}
-.member-card{cursor:pointer;transition:border-color .18s,transform .18s}
-.member-card:hover{transform:translateY(-3px);border-color:#e6ad65}
-.member-card.selected{border:2px solid #f6d49b;box-shadow:0 0 0 2px #8f1c1355,0 10px 28px #0008}
-.member-preview{position:sticky;top:110px;min-height:300px;padding:12px}
-.member-preview img{display:block;width:100%;max-height:72vh;object-fit:contain;background:#090707;border:1px solid #7b3825}
-.member-preview p{color:#d8c9bf;line-height:1.6;text-align:center;padding:25px 10px}
-@media(max-width:760px){.members-layout{grid-template-columns:1fr}.member-preview{position:static;min-height:200px}.member-preview img{max-height:65vh}}
 
-.media-toolbar{display:flex;justify-content:space-between;gap:14px;align-items:center;margin:18px 0 20px;flex-wrap:wrap}.media-filters{display:flex;gap:9px;flex-wrap:wrap}.media-filter{background:linear-gradient(145deg,#21130f,#100b09);border:1px solid #71351f;color:#f5e6d5;border-radius:8px;padding:11px 20px;font:600 14px Georgia;cursor:pointer}.media-filter.active,.media-filter:hover{background:linear-gradient(135deg,#a32b17,#4e130e);border-color:#f0a24b;box-shadow:0 0 14px #b93d1c55}.media-add{white-space:nowrap}.media-admin{margin:0 0 20px;border-color:#9b4b27}.media-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.media-form label{display:grid;gap:6px;color:#d8b88f;font-size:13px}.media-form input,.media-form select{width:100%;padding:10px;background:#100b09;color:#f8eee3;border:1px solid #6d3924;border-radius:6px;font:14px Arial}.media-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.9fr);gap:20px;align-items:start}.media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.media-card{min-width:0;border:1px solid #71351f;border-radius:10px;overflow:hidden;background:linear-gradient(145deg,#21130f,#100b09);cursor:pointer;transition:transform .18s,border-color .18s}.media-card:hover,.media-card.selected{transform:translateY(-2px);border-color:#f2ad59;box-shadow:0 0 14px #bc4b2450}.media-thumb{height:135px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at 70% 20%,#a34d22,#3a1715 55%,#100b09)}.media-thumb:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 35%,#f6a33a33 36%,transparent 60%),radial-gradient(circle at 25% 70%,#e14d2738,transparent 40%)}.media-thumb img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.media-thumb .media-symbol{font-size:45px;filter:drop-shadow(0 3px 8px #000);z-index:1}.media-thumb .play{position:absolute;z-index:2;border:1px solid #f8d4a2;background:#160b09c9;border-radius:50%;width:44px;height:44px;display:grid;place-items:center;font-size:20px}.media-thumb .duration{position:absolute;right:8px;bottom:7px;background:#080606d9;padding:3px 6px;border-radius:4px;font:12px Arial}.media-card-text{padding:10px 12px}.media-card-text h4{margin:0 0 6px;font-size:15px;color:#f9e7ce}.media-card-text p{margin:0;color:#c8a984;font:12px Arial;line-height:1.5}.media-delete{margin-top:9px;padding:6px 9px;border:1px solid #a83b27;border-radius:5px;background:#35110d;color:#ffd9c5;font:12px Arial;cursor:pointer}.media-delete:hover{background:#a32b17;border-color:#f2ad59}.media-viewer{border:1px solid #71351f;border-radius:10px;overflow:hidden;background:linear-gradient(145deg,#21130f,#100b09);position:sticky;top:105px}.media-viewer-art{height:290px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;background:radial-gradient(ellipse at 65% 30%,#b04b25,#421816 55%,#100b09);position:relative}.media-viewer-art img,.media-viewer-art iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0}.media-viewer-art span,.media-viewer-art b{position:relative;text-shadow:0 3px 8px #000}.media-viewer-art span{color:#f6b85f;letter-spacing:4px;font-size:12px}.media-viewer-art b{font-size:23px;color:#fff0d8}.media-viewer-info{padding:15px 18px}.media-viewer-info h3{margin:0 0 8px;color:#f7d69b}.media-viewer-info p{margin:6px 0;color:#d5c2ad;line-height:1.55}.media-viewer-info #media-viewer-meta{color:#d88b3c;font:13px Arial}.media-pager{display:flex;justify-content:center;gap:8px;margin:18px 0}.media-page{min-width:36px;padding:8px 12px;border:1px solid #71351f;border-radius:6px;background:#160d0a;color:#f4dfc6;cursor:pointer}.media-page.active{background:#9e2c18;border-color:#f1a14c;box-shadow:0 0 10px #bd3c2455}.media-empty{grid-column:1/-1;padding:25px;text-align:center;color:#c7a987;border:1px dashed #71351f;border-radius:8px}@media(max-width:800px){.media-layout{grid-template-columns:1fr}.media-viewer{position:static;grid-row:1}.media-viewer-art{height:230px}}@media(max-width:500px){.media-grid{grid-template-columns:1fr 1fr}.media-thumb{height:105px}.media-form{grid-template-columns:1fr}.media-filter{padding:9px 12px;font-size:13px}}
+/* Ebedi Azeroth raid calendar — Horde-inspired responsive layout */
+.raid-section{padding-bottom:16px}.raid-board{width:min(1180px,94%);margin:0 auto;display:grid;grid-template-columns:minmax(270px,32%) 1fr;gap:10px;padding:12px;border:2px solid #9b4a22;border-radius:18px;background:linear-gradient(135deg,#2a100b,#090606 40%,#210b08);box-shadow:0 0 0 4px #2c120b,0 0 24px #a33216aa,inset 0 0 25px #000;position:relative}.raid-list-panel,.raid-calendar-panel{min-width:0;background:linear-gradient(145deg,#170b08,#080606);border:1px solid #b66a35;border-radius:12px;box-shadow:inset 0 0 0 3px #35160d,inset 0 0 20px #000}.raid-list-heading{display:flex;align-items:center;gap:10px;padding:15px 14px;border-bottom:1px solid #75401e;background:linear-gradient(90deg,#5d1b10,#1a0907)}.horde-mark{font-size:30px;color:#ff5835;text-shadow:0 0 12px #e30b00}.raid-list-heading h3{margin:0;color:#ffdfaa;font-size:19px}.raid-list-heading small{display:block;margin-top:4px;color:#d78d4b;font:10px Arial;letter-spacing:2px}.raid-list{padding:8px;display:grid;gap:6px}.raid-entry{display:grid;grid-template-columns:54px minmax(0,1fr) auto;align-items:center;gap:8px;min-height:48px;padding:4px 7px;border:1px solid #74401f;border-radius:7px;background:linear-gradient(90deg,#31140d,#100907);box-shadow:inset 0 0 10px #000; color:#f9e7c9}.raid-thumb{height:39px;border-radius:4px;display:grid;place-items:center;font-size:25px;color:#ffca7a;text-shadow:0 0 8px #ff5b17;background:radial-gradient(circle at 35% 30%,#7d3d16,#170907 75%);border:1px solid #8c4c25}.thumb-hyjal{color:#a5f16c;background:radial-gradient(circle,#356b1c,#0b1408)}.thumb-ony,.thumb-blackwing{color:#ff8b83;background:radial-gradient(circle,#68211a,#100605)}.thumb-molten{color:#ffb44b;background:radial-gradient(circle,#96350b,#160604)}.thumb-zul,.thumb-ruins{color:#b9e36a;background:radial-gradient(circle,#3e5d1a,#101006)}.thumb-temple{color:#c18cff;background:radial-gradient(circle,#49216c,#0b0610)}.thumb-naxx{color:#83d9ff;background:radial-gradient(circle,#184b6b,#060b12)}.raid-name{font-size:clamp(12px,1.25vw,16px);font-weight:bold;line-height:1.15}.raid-size{font:10px Arial;color:#f7d4a1;border:1px solid #a35d2a;padding:5px 6px;border-radius:4px;white-space:nowrap}.raid-list-note{margin:0;padding:10px 13px 13px;color:#b9a293;font:11px/1.5 Arial}.raid-calendar-panel{padding:10px;display:flex;flex-direction:column}.calendar-top{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:8px;margin-bottom:9px;padding:7px;border:1px solid #a25a2a;border-radius:8px;background:linear-gradient(90deg,#5b1b0d,#170806,#5b1b0d)}.calendar-top h3{text-align:center;margin:0;color:#ffe1a8;font-size:clamp(18px,2.2vw,29px);letter-spacing:2px;text-shadow:0 2px 5px #000}.month-btn{border:1px solid #e9a34d;border-radius:6px;background:#280b07;color:#ffca76;font-size:19px;padding:7px;cursor:pointer}.month-btn:hover{background:#7d2113}.calendar-weekdays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));background:#26100b;border:1px solid #8d4a26;border-bottom:0}.calendar-weekdays span{text-align:center;padding:9px 2px;color:#f6d8b0;font:bold 10px Arial;letter-spacing:.3px;border-right:1px solid #6d371e}.calendar-weekdays span:last-child{border-right:0}.calendar-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));grid-auto-rows:minmax(66px,1fr);flex:1;border-left:1px solid #75401f;border-top:1px solid #75401f}.calendar-day{position:relative;min-height:66px;padding:7px;color:#d9c4ad;border-right:1px solid #75401f;border-bottom:1px solid #75401f;background:linear-gradient(145deg,#130b08,#090606);font:13px Arial}.calendar-day.is-outside{color:#67564b;background:#0b0706}.calendar-day.is-today{box-shadow:inset 0 0 0 2px #d17b36;background:linear-gradient(145deg,#32130b,#120806)}.calendar-day .day-number{position:relative;z-index:1}.calendar-day .day-number.today-number{color:#ffcc72;font-weight:bold}.calendar-day:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,#7c170f18,transparent 65%);pointer-events:none}.calendar-empty-note{text-align:center;color:#9c8270;font:11px Arial;padding:10px 5px 3px}.raid-legend{width:min(1080px,90%);margin:12px auto 0;padding:12px 18px;display:flex;justify-content:space-around;align-items:center;gap:16px;border:1px solid #9c4e25;border-radius:12px;background:linear-gradient(90deg,#200b07,#080606,#200b07);box-shadow:0 5px 18px #0008}.legend-title{display:flex;align-items:center;gap:12px;color:#f6d79e}.legend-title>span{font-size:36px;color:#f69b20}.legend-title strong{display:block;font-size:20px}.legend-title small{display:block;margin-top:4px;color:#c9b6a3;font-size:12px}.legend-item{display:flex;align-items:center;gap:9px;color:#f0e0ce;font-size:14px;text-align:center;line-height:1.35}.legend-dot{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font:bold 14px Arial;font-style:normal;border:2px solid #6bc9f3;color:#83dfff;box-shadow:0 0 12px #36a6ff55}.dot-twenty{border-color:#a5e52d;color:#b5f342;box-shadow:0 0 12px #a5e52d44}
+@media(max-width:850px){.raid-board{grid-template-columns:1fr}.raid-list{grid-template-columns:1fr 1fr}.raid-list-heading{padding:12px}.raid-list-note{padding-top:6px}.calendar-day{min-height:54px}.raid-legend{flex-wrap:wrap}.legend-title{width:100%;justify-content:center}}
+@media(max-width:520px){.raid-board{width:96%;padding:7px}.raid-list{grid-template-columns:1fr}.calendar-weekdays span{font-size:8px;padding:8px 0}.calendar-day{min-height:43px;padding:5px 3px;font-size:11px}.calendar-top{grid-template-columns:34px 1fr 34px;padding:5px}.calendar-top h3{font-size:16px;letter-spacing:1px}.month-btn{font-size:14px;padding:6px}.legend-title strong{font-size:16px}.legend-title small{font-size:10px}.legend-item{font-size:12px}.legend-dot{width:34px;height:34px}}
 </style></head><body><header class="top"><div class="wrap nav"><a class="brand" href="#home">☠ EBEDİ AZEROTH<small>SAVAŞ · DİSİPLİN · KARDEŞLİK</small></a><nav class="links"><a href="#home">Ana Sayfa</a><a href="#guild">Guild</a><a href="#members">Üyeler</a><a href="#raid-calendar">Raid Takvimi</a><a href="#media">Foto &amp; Video</a><a href="#boss-kills">Boss Kill</a><a href="#polls">Anketler</a><a href="#rules">Kurallar</a><a href="#apply">Başvuru</a><a href="#discord">Discord</a></nav><a class="btn" href="https://discord.gg/r7pJCgecx" target="_blank">Discord'a Katıl</a></div></header><main><section class="hero" id="home"><div class="eyebrow">WORLD OF WARCRAFT • HORDE GUILD</div><h1>EBEDİ AZEROTH</h1><div class="tag">SAVAŞ, DİSİPLİN, KARDEŞLİK</div><p>Güçlü bir topluluk, unutulmaz zaferler.<br>Azeroth'ta sen de yerini al.</p><div class="actions"><a class="btn" href="#apply">⚔ HEMEN BAŞVUR</a><a class="btn secondary" href="#guild">GUILD'İMİZİ KEŞFET</a></div><h2 style="color:#e33a2b;letter-spacing:5px">FOR THE HORDE!</h2></section><div class="wrap features"><div class="feature"><b>⚔ RAID TAKIMLARI</b><span>Düzenli organizasyonlar</span></div><div class="feature"><b>♟ GÜÇLÜ KADRO</b><span>Birlikte daha güçlüyüz</span></div><div class="feature"><b>☠ AKTİF TOPLULUK</b><span>Her zaman yanındayız</span></div><div class="feature"><b>🔥 YENİ MACERALAR</b><span>Sürekli gelişen içerik</span></div><div class="feature"><b>🛡 PvP & PvE</b><span>Horde için mücadele</span></div></div><div class="wrap"><div class="title"><h2>HORDE'UN GÜCÜYLE</h2><p>Birlikte savaşır, birlikte yükseliriz.</p></div><div class="grid"><section class="panel" id="guild"><h3>🐺 Ebedi Azeroth'a Hoş Geldin</h3><p>Azeroth'un efsaneleri yeniden yazılıyor. Dostluk, strateji ve unutulmaz maceralar seni bekliyor. Horde'un gücü, seninle daha da büyüyor.</p><ul><li>Raid ve grup etkinlikleri</li><li>Yeni oyunculara destek</li><li>Dayanışmacı guild ortamı</li></ul><a class="btn" href="#apply">Aramıza Katıl</a></section><section class="panel" id="discord"><h3>📯 Discord Sunucumuz</h3><p>Etkinliklerden haberdar ol, Horde oyuncularıyla tanış.</p><a class="btn" href="https://discord.gg/r7pJCgecx" target="_blank">DISCORD'A KATIL</a><p class="note">Savaş · Disiplin · Kardeşlik</p></section></div>
 
 <section id="members">
-  <div class="title"><h2>ÜYELER</h2><p>Ebedi Azeroth karakter tanıtımları.</p></div>
-  <div class="members-layout">
-     <div id="members-list" class="members-grid"><article class="panel"><p>Görseller yükleniyor...</p></article></div>
-     <aside id="member-preview" class="member-preview panel" aria-live="polite"><p>Bir karakter görseline tıklayarak burada büyük görüntüleyebilirsin.</p></aside>
-   </div>
-  <div id="member-pagination" class="member-pagination" aria-label="Üye sayfaları"></div>
-  <div class="panel" id="member-admin" style="display:none;margin-top:18px">
-    <h3>Görsel Yönetimi</h3>
-    <div id="admin-login">
-      <p>Yönetici girişi</p>
-      <div class="field"><label>Yönetici şifresi</label><input id="admin-password" type="password" autocomplete="current-password"></div>
-      <button class="btn" id="admin-login-button" type="button" style="margin-top:12px">Giriş yap</button>
-      <p id="admin-message" class="note"></p>
-    </div>
-    <div id="admin-tools" style="display:none">
-      <p class="note">Yalnızca karakter tanıtım görseli yükleyebilir veya kaldırabilirsin. Üye bilgileri görselin üzerinde yer alır.</p>
-      <div class="field"><label>Karakter görseli (JPEG, PNG veya WEBP; en fazla 5 MB)</label><input id="member-image" type="file" accept="image/jpeg,image/png,image/webp"></div>
-      <button class="btn" id="upload-image" type="button" style="margin-top:12px">Görseli yükle</button>
-      <div id="admin-members" style="margin-top:18px"></div>
-      <button class="btn secondary" id="admin-logout" type="button">Çıkış yap</button>
-    </div>
+  <div class="title"><h2>ÜYELER</h2><p>Ebedi Azeroth'un üyeleri ve karakterleri.</p></div>
+  <div class="members-grid">
+    <article class="member-card">
+      <img class="member-art" src="altuga-rhazkiel.jpeg" alt="Altuga Rhazkiel — Tauren Restoration Druid">
+      <div class="member-top">
+        <h3 class="member-name">ALTUGA</h3>
+        <span class="member-surname">Rhazkiel</span>
+        <p class="member-owner">Oyuncu: Okhan</p>
+      </div>
+      <div class="member-details">
+        <span class="member-role">TAUREN DRUID</span>
+        <span class="member-role">RESTORATION</span>
+        <span class="member-role">PVP · PVE</span>
+        <p><strong>Seviye:</strong> 60</p>
+        <details>
+          <summary>Karakter profili</summary>
+          <div class="member-extra">
+            <p><strong>Sınıf:</strong> Druid</p>
+            <p><strong>Uzmanlık:</strong> Restoration</p>
+            <p><strong>Oyun tarzı:</strong> PvP ve PvE</p>
+          </div>
+        </details>
+      </div>
+    </article>
+    <article class="member-card">
+      <div class="member-top">
+        <h3 class="member-name">BEYLOR</h3>
+        <span class="member-surname">Rhazkiel</span>
+        <p class="member-owner">Oyuncu: Ertuğrul</p>
+      </div>
+      <div class="member-details">
+        <span class="member-role">UNDEAD PALADIN</span>
+        <span class="member-role">RETRIBUTION</span>
+        <p><strong>Uzmanlık:</strong> Retribution</p>
+        <details>
+          <summary>Karakter profili</summary>
+          <div class="member-extra">
+            <p><strong>Sınıf:</strong> Paladin</p>
+            <p><strong>Uzmanlık:</strong> Retribution</p>
+          </div>
+        </details>
+      </div>
+    </article>
   </div>
-  <p style="text-align:center;margin-top:18px"><button class="btn secondary" id="show-admin" type="button">Yönetici</button></p>
 </section>
-<section id="raid-calendar">
-  <div class="title"><h2>📅 RAID TAKVİMİ &amp; DAVETLER</h2><p>Planlanan etkinlikler ve katılım durumları.</p></div>
-  <div class="grid">
-    <article class="panel"><h3>Yaklaşan Raidler</h3><p>Raid adı, tarih, saat, lider ve katılım durumları bu alanda gösterilecek.</p><p class="note">Katılıyorum / Belki / Katılamıyorum seçenekleri ve kadro yönetimi sonraki entegrasyon adımında bağlanacak.</p></article>
-    <article class="panel"><h3>Raid Invite</h3><p>Yetkililer etkinlik oluşturabilecek; üyeler davetleri görüp katılım yanıtı verebilecek.</p><p class="note">Oyun içi otomatik davet, sunucu ve oyun entegrasyonları destekliyorsa ayrıca değerlendirilir.</p></article>
+<section id="raid-calendar" class="raid-section">
+  <div class="title"><h2>⚔ RAID TAKVİMİ &amp; DAVETLER</h2><p>Ebedi Azeroth’un savaş planı • WoW Forever</p></div>
+  <div class="raid-board">
+    <aside class="raid-list-panel">
+      <div class="raid-list-heading"><span class="horde-mark">☠</span><div><h3>WoW Forever Raidleri</h3><small>RAID ARŞİVİ</small></div></div>
+      <div class="raid-list" id="raid-list">
+        <div class="raid-entry"><span class="raid-thumb thumb-barrow">✦</span><span class="raid-name">The Barrow Deeps</span><span class="raid-size">10 / 20</span></div>
+        <div class="raid-entry"><span class="raid-thumb thumb-hyjal">✧</span><span class="raid-name">Hyjal Summit</span><span class="raid-size">10 / 20</span></div>
+        <div class="raid-entry"><span class="raid-thumb thumb-ony">♜</span><span class="raid-name">Onyxia’s Lair</span><span class="raid-size">10 / 20</span></div>
+        <div class="raid-entry"><span class="raid-thumb thumb-molten">♨</span><span class="raid-name">Molten Core</span><span class="raid-size">10 / 20</span></div>
+        <div class="raid-entry"><span class="raid-thumb thumb-blackwing">♟</span><span class="raid-name">Blackwing Lair</span><span class="raid-size">10 / 20</span></div>
+        <div class="raid-entry"><span class="raid-thumb thumb-zul">✹</span><span class="raid-name">Zul’Gurub</span><span class="raid-size">10 / 20</span></div>
+        <div class="raid-entry"><span class="raid-thumb thumb-ruins">♜</span><span class="raid-name">Ruins of Ahn’Qiraj</span><span class="raid-size">10 / 20</span></div>
+        <div class="raid-entry"><span class="raid-thumb thumb-temple">✺</span><span class="raid-name">Temple of Ahn’Qiraj</span><span class="raid-size">10 / 20</span></div>
+        <div class="raid-entry"><span class="raid-thumb thumb-naxx">❄</span><span class="raid-name">Naxxramas</span><span class="raid-size">10 / 20</span></div>
+      </div>
+      <p class="raid-list-note">Raid boyutları Forever yapılandırmasına göre değişebilir. Takvim etkinlikleri ileride yönetici panelinden eklenecek.</p>
+    </aside>
+    <div class="raid-calendar-panel">
+      <div class="calendar-top"><button class="month-btn" id="raid-prev" aria-label="Önceki ay">❮</button><h3 id="raid-month-label">KASIM 2026</h3><button class="month-btn" id="raid-next" aria-label="Sonraki ay">❯</button></div>
+      <div class="calendar-weekdays"><span>PAZARTESİ</span><span>SALI</span><span>ÇARŞAMBA</span><span>PERŞEMBE</span><span>CUMA</span><span>CUMARTESİ</span><span>PAZAR</span></div>
+      <div class="calendar-days" id="raid-calendar-days" aria-live="polite"></div>
+      <div class="calendar-empty-note">Etkinlikler burada gün ve saatleriyle görüntülenecek.</div>
+    </div>
   </div>
+  <div class="raid-legend"><div class="legend-title"><span>▦</span><div><strong>Guild Raid Planlaması</strong><small>Haftalık raid programı ve etkinlik takvimi</small></div></div><div class="legend-item"><i class="legend-dot dot-ten">10</i><span>10 Kişilik<br>Raid</span></div><div class="legend-item"><i class="legend-dot dot-twenty">20</i><span>20 Kişilik<br>Raid</span></div></div>
 </section>
 <section id="media">
-  <div class="title"><h2>📸 FOTO &amp; VİDEO GALERİSİ</h2><p>Raid, PvP ve guild anılarımız… Ebedi Azeroth’un savaş hikâyeleri burada.</p></div>
-  <div class="media-toolbar"><div class="media-filters" role="group" aria-label="Galeri kategorileri"><button class="media-filter active" data-filter="all">▦ Tümü</button><button class="media-filter" data-filter="raid">⚔ Raid</button><button class="media-filter" data-filter="pvp">☠ PvP</button><button class="media-filter" data-filter="fun">🍺 Eğlenceli Anlar</button></div><button class="btn media-add" id="media-add-toggle" hidden disabled aria-hidden="true">＋ İçerik Ekle</button></div>
-  <div class="media-admin panel" id="media-admin" hidden aria-hidden="true"><h3>Galeriye içerik ekle</h3><p class="note">Fotoğraf seçebilir veya YouTube video bağlantısı ekleyebilirsin.</p><div class="media-form"><label>Başlık<input id="media-title" placeholder="Örn. Onyxia Raid Gecesi"></label><label>Kategori<select id="media-category"><option value="raid">Raid</option><option value="pvp">PvP</option><option value="fun">Eğlenceli Anlar</option></select></label><label>Paylaşan<input id="media-owner" placeholder="Oyuncu adı"></label><label>Fotoğraf dosyası<input id="media-file" type="file" accept="image/jpeg,image/png,image/webp"></label><label>YouTube bağlantısı<input id="media-video" type="url" placeholder="https://youtu.be/..."></label><button class="btn" id="media-save">Ekle</button></div><p class="note" id="media-status"></p></div>
-  <div class="media-layout"><div><div class="media-grid" id="media-grid"></div><div class="media-pager" id="media-pager"></div></div><aside class="media-viewer" id="media-viewer"><div class="media-viewer-art" id="media-viewer-art"><span>EBEDİ AZEROTH</span><b>Bir anı seç</b></div><div class="media-viewer-info"><h3 id="media-viewer-title">Guild anılarımız</h3><p id="media-viewer-meta">Raid · PvP · Kardeşlik</p><p id="media-viewer-desc">Galeriden bir fotoğraf veya video seçerek büyük görüntüleyebilirsin.</p></div></aside></div>
+  <div class="title"><h2>📸 FOTOĞRAF &amp; VİDEO GALERİSİ</h2><p>Boss kesimleri, raid görüntüleri ve guild anıları.</p></div>
+  <div class="panel">
+    <h3>Guild Anılarımız</h3>
+    <p>Fotoğraf ve videolar kategori, tarih ve açıklamayla burada listelenecek.</p>
+    <p class="note">Dosya yükleme ve kalıcı depolama alanı henüz bağlı değil. Bu alan, depolama altyapısı kurulduktan sonra gerçek yüklemeleri destekleyecek.</p>
+  </div>
 </section>
 <section id="boss-kills">
   <div class="title"><h2>🏆 BOSS KILL ARŞİVİ</h2><p>Birlikte kazandığımız zaferleri kaydedelim.</p></div>
@@ -109,35 +132,30 @@
 </section>
 \n<section id="apply"><div class="title"><h2>📜 GUILD BAŞVURU FORMU</h2><p>Aramıza katılmak için bilgilerini doldur.</p></div><div class="panel"><form id="application" class="form"><div class="field"><label>Karakter adı *</label><input name="character" required maxlength="40" placeholder="Örn. Grommash"></div><div class="field"><label>Sınıf *</label><select name="class" required><option value="">Seçiniz</option><option>Warrior</option><option>Paladin</option><option>Hunter</option><option>Rogue</option><option>Priest</option><option>Shaman</option><option>Mage</option><option>Warlock</option><option>Monk</option><option>Druid</option><option>Demon Hunter</option><option>Death Knight</option><option>Evoker</option></select></div><div class="field"><label>Seviye *</label><input name="level" type="number" min="1" max="100" required></div><div class="field"><label>Sunucu / Realm *</label><input name="realm" required maxlength="80"></div><div class="field"><label>Discord kullanıcı adı *</label><input name="discordName" required maxlength="80"></div><div class="field"><label>Tercih edilen rol</label><select name="role"><option>Belirtilmedi</option><option>Tank</option><option>Healer</option><option>DPS</option><option>Esnek</option></select></div><div class="field full"><label>Neden guild'imize katılmak istiyorsun? *</label><textarea name="reason" required maxlength="1000"></textarea></div><p class="note full">Şifreni veya hassas bilgilerini yazma.</p><div id="status" class="status full" role="status"></div><div class="full"><button class="btn" id="send" type="submit">⚔ BAŞVURUYU GÖNDER</button></div></form></div></section></div><section class="bottom"><h2>SEN DE ARAMIZA KATIL</h2><p>Efsaneni Horde ile yaz.</p><a class="btn" href="#apply">HEMEN BAŞVUR</a></section></main><footer class="footer">© Ebedi Azeroth • FOR THE HORDE!</footer><script>
 const f=document.getElementById('application'),s=document.getElementById('status'),b=document.getElementById('send');f.addEventListener('submit',async e=>{e.preventDefault();s.className='status full show';s.textContent='Başvurun gönderiliyor...';b.disabled=true;try{let r=await fetch('/.netlify/functions/apply',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(f)))});let j=await r.json();if(!r.ok)throw Error();s.textContent='Başvurun başarıyla gönderildi! FOR THE HORDE!';f.reset()}catch{s.textContent='Gönderilemedi. Sitenin yeni sürümünün yüklendiğini ve Netlify ayarlarını kontrol et.'}finally{b.disabled=false}});
-</script><script>(async function(){
-const list=document.getElementById('members-list'),admin=document.getElementById('member-admin');
-const login=document.getElementById('admin-login'),tools=document.getElementById('admin-tools');
-const msg=document.getElementById('admin-message'),fileInput=document.getElementById('member-image');
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-async function api(url,opts={}){const r=await fetch(url,{credentials:'same-origin',...opts});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.error||'İşlem başarısız');return d}
-let items=[];
-function render(){list.innerHTML=items.length?items.map((x,i)=>`<article class="member-card${i===0?' selected':''}" data-preview="${i}" tabindex="0" role="button" aria-label="Karakter görselini büyük göster"><img class="member-art" src="${esc(x.url)}" alt="Ebedi Azeroth karakter görseli"></article>`).join(''):'<article class="panel"><p>Henüz görsel yüklenmedi.</p></article>';
-const preview=document.getElementById('member-preview');
-function selectImage(i){const x=items[i];if(!x)return;list.querySelectorAll('.member-card').forEach((card,j)=>card.classList.toggle('selected',j===i));preview.innerHTML=`<img src="${esc(x.url)}" alt="Seçili Ebedi Azeroth karakter görseli">`;}
-list.querySelectorAll('[data-preview]').forEach(card=>{const choose=()=>selectImage(Number(card.dataset.preview));card.addEventListener('click',choose);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose()}})});
-if(items.length)selectImage(0);else preview.innerHTML='<p>Bir karakter görseline tıklayarak burada büyük görüntüleyebilirsin.</p>';
-const box=document.getElementById('admin-members');box.innerHTML=items.map(x=>`<div class="admin-row"><img src="${esc(x.url)}" alt="" style="width:90px;height:60px;object-fit:cover"><button class="btn secondary" data-remove="${esc(x.id)}">Görseli kaldır</button></div>`).join('');
-box.querySelectorAll('[data-remove]').forEach(b=>b.onclick=async()=>{if(!confirm('Bu görseli kaldırmak istiyor musun?'))return;try{await api('/.netlify/functions/member-gallery?id='+encodeURIComponent(b.dataset.remove),{method:'DELETE'});await load();msg.textContent='Görsel kaldırıldı.'}catch(e){msg.textContent=e.message}})}
-async function load(){try{items=(await api('/.netlify/functions/member-gallery')).images||[];render()}catch(e){list.innerHTML='<article class="panel"><p>Görseller yüklenemiyor.</p></article>'}}
-document.getElementById('show-admin').onclick=()=>{admin.style.display=admin.style.display==='none'?'block':'none';admin.scrollIntoView({behavior:'smooth'})};
-document.getElementById('admin-login-button').onclick=async()=>{try{await api('/.netlify/functions/admin-auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:document.getElementById('admin-password').value})});login.style.display='none';tools.style.display='block';msg.textContent='Giriş başarılı.';await load()}catch(e){msg.textContent=e.message}};
-document.getElementById('admin-logout').onclick=async()=>{try{await api('/.netlify/functions/admin-auth',{method:'DELETE'})}catch{}login.style.display='block';tools.style.display='none';document.getElementById('admin-password').value=''};
-document.getElementById('upload-image').onclick=async()=>{const file=fileInput.files[0];if(!file){msg.textContent='Önce bir görsel seç.';return}if(!/^image\/(jpeg|png|webp)$/.test(file.type)){msg.textContent='JPEG, PNG veya WEBP görsel seç.';return}if(file.size>5*1024*1024){msg.textContent='Görsel 5 MB altında olmalı.';return}try{msg.textContent='Görsel yükleniyor...';const data=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result.split(',')[1]);r.onerror=reject;r.readAsDataURL(file)});await api('/.netlify/functions/member-gallery',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mime:file.type,data})});fileInput.value='';await load();msg.textContent='Görsel yüklendi.'}catch(e){msg.textContent=e.message}};
-await load();
-})();</script><script>
-(()=>{const grid=document.getElementById('media-grid');if(!grid)return;const $=id=>document.getElementById(id);const demo=[
-{title:'Onyxia Raid Gecesi',category:'raid',owner:'Altuga',date:'30 Eki 2026',symbol:'🐉',desc:'Guild ekibimizle unutulmaz bir raid gecesi.'},
-{title:'Alterac Vadisi Zaferi',category:'pvp',owner:'Beylor',date:'28 Eki 2026',symbol:'⚔',desc:'Horde saflarında birlikte mücadele.'},
-{title:'Guild Buluşması',category:'fun',owner:'Daren',date:'26 Eki 2026',symbol:'🍺',desc:'Birlikte geçirdiğimiz güzel anlardan.'},
-{title:'Ragnaros Kesimi',category:'raid',owner:'Irontitan',date:'24 Eki 2026',symbol:'🔥',desc:'Ateş Lordu karşısında büyük zafer.'},
-{title:'Arathi Basin – PvP',category:'pvp',owner:'Subtley',date:'22 Eki 2026',symbol:'☠',desc:'Savaş alanından bir kare.'},
-{title:'Azeroth’ta Gün Batımı',category:'fun',owner:'Hakkında',date:'20 Eki 2026',symbol:'🌄',desc:'Savaşın arasında kısa bir mola.'},
-{title:'Molten Core – Temizlik',category:'raid',owner:'Rhazkiel',date:'18 Eki 2026',symbol:'🔥',desc:'Takım oyunu ve koordinasyon.'},
-{title:'Orgrimmar Manzarası',category:'fun',owner:'Beylor',date:'17 Eki 2026',symbol:'🏰',desc:'Horde’un evi.'}
-];let entries=demo.slice(),filter='all',page=1,chosen=0;const per=4;const catName={raid:'⚔ Raid',pvp:'☠ PvP',fun:'🍺 Eğlenceli'};function show(e){chosen=entries.indexOf(e);$('media-viewer-title').textContent=e.title;$('media-viewer-meta').textContent=(catName[e.category]||'Fotoğraf')+' · Paylaşan: '+(e.owner||'Guild üyesi')+' · '+(e.date||'Yeni');$('media-viewer-desc').textContent=e.desc||'';const art=$('media-viewer-art');art.innerHTML='';if(e.video){let id=(e.video.match(/(?:youtu\.be\/|v=|embed\/)([\w-]{11})/)||[])[1];if(id){let f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+id;f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;art.appendChild(f)}else{art.textContent='Video bağlantısı'}}else if(e.src){let im=document.createElement('img');im.src=e.src;im.alt=e.title;art.appendChild(im)}else{art.innerHTML='<span>EBEDİ AZEROTH</span><b>'+e.symbol+' '+e.title+'</b>';art.style.background='radial-gradient(ellipse at 65% 30%,#b04b25,#421816 55%,#100b09)'}grid.querySelectorAll('.media-card').forEach(c=>c.classList.toggle('selected',Number(c.dataset.idx)===chosen))}function render(){let filtered=entries.filter(e=>filter==='all'||e.category===filter);let pages=Math.max(1,Math.ceil(filtered.length/per));if(page>pages)page=pages;let subset=filtered.slice((page-1)*per,page*per);grid.innerHTML='';if(!subset.length)grid.innerHTML='<div class="media-empty">Bu kategoride henüz içerik yok.</div>';subset.forEach(e=>{let idx=entries.indexOf(e),card=document.createElement('article');card.className='media-card'+(idx===chosen?' selected':'');card.dataset.idx=idx;card.innerHTML='<div class="media-thumb">'+(e.src?'<img src="'+e.src+'" alt="">':'<span class="media-symbol">'+e.symbol+'</span>')+(e.video?'<span class="play">▶</span><span class="duration">VIDEO</span>':'')+'</div><div class="media-card-text"><h4></h4><p></p></div>';card.querySelector('h4').textContent=e.title;card.querySelector('p').textContent=(catName[e.category]||'')+' · '+(e.owner||'Guild üyesi')+' · '+(e.date||'');card.onclick=()=>show(e);if(!$('media-admin').hidden){let del=document.createElement('button');del.type='button';del.className='media-delete';del.textContent='İçeriği kaldır';del.setAttribute('aria-label',e.title+' içeriğini kaldır');del.onclick=ev=>{ev.stopPropagation();if(!confirm('“'+e.title+'” içeriğini galeriden kaldırmak istiyor musun?'))return;entries=entries.filter(x=>x!==e);chosen=Math.min(chosen,Math.max(0,entries.length-1));render();if(entries.length)show(entries[chosen]);else{$('media-viewer-title').textContent='Guild anılarımız';$('media-viewer-meta').textContent='Raid · PvP · Kardeşlik';$('media-viewer-desc').textContent='Galeriden bir fotoğraf veya video seçerek büyük görüntüleyebilirsin.';$('media-viewer-art').innerHTML='<span>EBEDİ AZEROTH</span><b>Bir anı seç</b>'}};card.querySelector('.media-card-text').appendChild(del)}grid.appendChild(card)});let pager=$('media-pager');pager.innerHTML='';for(let n=1;n<=pages;n++){let b=document.createElement('button');b.className='media-page'+(n===page?' active':'');b.textContent=n;b.onclick=()=>{page=n;render()};pager.appendChild(b)}}document.querySelectorAll('.media-filter').forEach(b=>b.onclick=()=>{document.querySelectorAll('.media-filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');filter=b.dataset.filter;page=1;render()});$('media-add-toggle').onclick=()=>{}; // Upload controls intentionally locked until server-side admin authentication is configured.$('media-save').onclick=()=>{return; /* Public upload disabled for safety until server-side authentication/storage is configured. */ let title=$('media-title').value.trim(),file=$('media-file').files[0],video=$('media-video').value.trim();if(!title||(!file&&!video)){ $('media-status').textContent='Başlık ve fotoğraf ya da YouTube bağlantısı ekle.';return}let add=e=>{entries.unshift(e);filter='all';page=1;document.querySelectorAll('.media-filter').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));render();show(e);$('media-status').textContent='İçerik bu tarayıcı oturumu için eklendi. Kalıcı ve herkese açık yayın için depolama bağlantısı gerekir.';$('media-title').value='';$('media-file').value='';$('media-video').value=''};let item={title,category:$('media-category').value,owner:$('media-owner').value.trim()||'Guild üyesi',date:new Date().toLocaleDateString('tr-TR'),symbol:'📸',desc:'Ebedi Azeroth galerisine yeni eklendi.',video:video||''};if(file){if(!/^image\/(jpeg|png|webp)$/.test(file.type)){ $('media-status').textContent='JPEG, PNG veya WEBP dosyası seç.';return}if(file.size>4*1024*1024){$('media-status').textContent='Fotoğraf 4 MB altında olmalı.';return}let r=new FileReader();r.onload=()=>{item.src=r.result;add(item)};r.readAsDataURL(file)}else add(item)};render();show(entries[0]);})();
+
+const raidCalendarDays=document.getElementById('raid-calendar-days');
+const raidMonthLabel=document.getElementById('raid-month-label');
+let raidViewDate=new Date(2026,10,1);
+const raidMonthNames=['OCAK','ŞUBAT','MART','NİSAN','MAYIS','HAZİRAN','TEMMUZ','AĞUSTOS','EYLÜL','EKİM','KASIM','ARALIK'];
+function renderRaidCalendar(){
+  const year=raidViewDate.getFullYear(),month=raidViewDate.getMonth();
+  raidMonthLabel.textContent=raidMonthNames[month]+' '+year;
+  raidCalendarDays.innerHTML='';
+  const firstDay=new Date(year,month,1),lastDay=new Date(year,month+1,0);
+  const mondayOffset=(firstDay.getDay()+6)%7;
+  const cellCount=Math.ceil((mondayOffset+lastDay.getDate())/7)*7;
+  const today=new Date();
+  for(let i=0;i<cellCount;i++){
+    const date=new Date(year,month,1-mondayOffset+i);
+    const cell=document.createElement('div');cell.className='calendar-day';
+    if(date.getMonth()!==month)cell.classList.add('is-outside');
+    const isToday=date.getFullYear()===today.getFullYear()&&date.getMonth()===today.getMonth()&&date.getDate()===today.getDate();
+    if(isToday)cell.classList.add('is-today');
+    const number=document.createElement('span');number.className='day-number'+(isToday?' today-number':'');number.textContent=date.getDate();cell.appendChild(number);
+    raidCalendarDays.appendChild(cell);
+  }
+}
+document.getElementById('raid-prev').addEventListener('click',()=>{raidViewDate.setMonth(raidViewDate.getMonth()-1);renderRaidCalendar()});
+document.getElementById('raid-next').addEventListener('click',()=>{raidViewDate.setMonth(raidViewDate.getMonth()+1);renderRaidCalendar()});
+renderRaidCalendar();
 </script></body></html>
