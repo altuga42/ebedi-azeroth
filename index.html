@@ -69,6 +69,19 @@
 @media(max-width:900px){.rules-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.rule-card{min-height:140px}}
 @media(max-width:600px){.rules-section{padding:0 8px}.rules-head{gap:10px}.rules-emblem{width:42px;height:42px;font-size:25px}.rules-kicker{font-size:9px;letter-spacing:1.5px}.rules-head h2{font-size:25px;letter-spacing:1px}.rules-intro{font-size:14px;padding:16px 14px}.rules-grid{grid-template-columns:1fr}.rule-card{grid-template-columns:54px minmax(0,1fr);padding:14px;min-height:unset}.rule-icon{width:48px;height:48px;font-size:23px}.rule-card h3{font-size:16px}.rule-card p{font-size:13px}.rules-footer{padding:15px;gap:12px}.rules-footer-mark{width:42px;height:42px;flex-basis:42px}.rules-footer p{font-size:14px}}
 
+
+/* Members: four square cards per page, preview spans the full 2x2 grid height */
+.members-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;gap:18px}
+.members-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:12px;align-content:stretch}
+.member-card{min-width:0;aspect-ratio:1/1;display:flex;align-items:stretch}
+.member-art{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;border:0}
+.member-preview{position:relative;top:auto;min-height:0;height:100%;padding:12px;display:flex;align-items:stretch;justify-content:center;overflow:hidden}
+.member-preview img{width:100%;height:100%;max-height:none;min-height:0;object-fit:contain;align-self:stretch}
+.member-pagination{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0}
+.member-page{min-width:38px;padding:9px 12px;border:1px solid #71351f;border-radius:6px;background:#160d0a;color:#f4dfc6;cursor:pointer}
+.member-page.active{background:#9e2c18;border-color:#f1a14c}
+@media(max-width:760px){.members-layout{grid-template-columns:1fr}.members-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}.member-preview{height:auto;min-height:220px}.member-preview img{height:auto;max-height:65vh}}
+
 </style>
 <style id="azeroth-brighter-background">
 /* Scenic background is for the page body only; the hero's existing artwork remains untouched. */
@@ -177,14 +190,19 @@ const login=document.getElementById('admin-login'),tools=document.getElementById
 const msg=document.getElementById('admin-message'),fileInput=document.getElementById('member-image');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 async function api(url,opts={}){const r=await fetch(url,{credentials:'same-origin',...opts});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.error||'İşlem başarısız');return d}
-let items=[];
-function render(){list.innerHTML=items.length?items.map((x,i)=>`<article class="member-card${i===0?' selected':''}" data-preview="${i}" tabindex="0" role="button" aria-label="Karakter görselini büyük göster"><img class="member-art" src="${esc(x.url)}" alt="Ebedi Azeroth karakter görseli"></article>`).join(''):'<article class="panel"><p>Henüz görsel yüklenmedi.</p></article>';
-const preview=document.getElementById('member-preview');
-function selectImage(i){const x=items[i];if(!x)return;list.querySelectorAll('.member-card').forEach((card,j)=>card.classList.toggle('selected',j===i));preview.innerHTML=`<img src="${esc(x.url)}" alt="Seçili Ebedi Azeroth karakter görseli">`;}
-list.querySelectorAll('[data-preview]').forEach(card=>{const choose=()=>selectImage(Number(card.dataset.preview));card.addEventListener('click',choose);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose()}})});
-if(items.length)selectImage(0);else preview.innerHTML='<p>Bir karakter görseline tıklayarak burada büyük görüntüleyebilirsin.</p>';
-const box=document.getElementById('admin-members');box.innerHTML=items.map(x=>`<div class="admin-row"><img src="${esc(x.url)}" alt="" style="width:90px;height:60px;object-fit:cover"><button class="btn secondary" data-remove="${esc(x.id)}">Görseli kaldır</button></div>`).join('');
-box.querySelectorAll('[data-remove]').forEach(b=>b.onclick=async()=>{if(!confirm('Bu görseli kaldırmak istiyor musun?'))return;try{await api('/.netlify/functions/member-gallery?id='+encodeURIComponent(b.dataset.remove),{method:'DELETE'});await load();msg.textContent='Görsel kaldırıldı.'}catch(e){msg.textContent=e.message}})}
+let items=[], memberPage=1, selectedImage=0;const membersPerPage=4;
+function render(){
+ const pages=Math.max(1,Math.ceil(items.length/membersPerPage));memberPage=Math.min(memberPage,pages);
+ const start=(memberPage-1)*membersPerPage;const visible=items.slice(start,start+membersPerPage);
+ list.innerHTML=visible.length?visible.map((x,i)=>`<article class="member-card${start+i===selectedImage?' selected':''}" data-preview="${start+i}" tabindex="0" role="button" aria-label="Karakter görselini büyük göster"><img class="member-art" src="${esc(x.url)}" alt="Ebedi Azeroth karakter görseli"></article>`).join(''):'<article class="panel"><p>Henüz görsel yüklenmedi.</p></article>';
+ const preview=document.getElementById('member-preview');
+ function selectImage(i){const x=items[i];if(!x)return;selectedImage=i;list.querySelectorAll('.member-card').forEach(card=>card.classList.toggle('selected',Number(card.dataset.preview)===i));preview.innerHTML=`<img src="${esc(x.url)}" alt="Seçili Ebedi Azeroth karakter görseli">`;}
+ list.querySelectorAll('[data-preview]').forEach(card=>{const choose=()=>selectImage(Number(card.dataset.preview));card.addEventListener('click',choose);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose()}})});
+ if(items.length)selectImage(Math.min(selectedImage,items.length-1));else preview.innerHTML='<p>Bir karakter görseline tıklayarak burada büyük görüntüleyebilirsin.</p>';
+ const pager=document.getElementById('member-pagination');pager.innerHTML='';for(let n=1;n<=pages;n++){const b=document.createElement('button');b.type='button';b.className='member-page'+(n===memberPage?' active':'');b.textContent=String(n);b.setAttribute('aria-label',`Üye sayfası ${n}`);b.onclick=()=>{memberPage=n;selectedImage=(n-1)*membersPerPage;render()};pager.appendChild(b)}
+ const box=document.getElementById('admin-members');box.innerHTML=items.map(x=>`<div class="admin-row"><img src="${esc(x.url)}" alt="" style="width:90px;height:60px;object-fit:cover"><button class="btn secondary" data-remove="${esc(x.id)}">Görseli kaldır</button></div>`).join('');
+ box.querySelectorAll('[data-remove]').forEach(b=>b.onclick=async()=>{if(!confirm('Bu görseli kaldırmak istiyor musun?'))return;try{await api('/.netlify/functions/member-gallery?id='+encodeURIComponent(b.dataset.remove),{method:'DELETE'});await load();msg.textContent='Görsel kaldırıldı.'}catch(e){msg.textContent=e.message}})
+}
 async function load(){try{items=(await api('/.netlify/functions/member-gallery')).images||[];render()}catch(e){list.innerHTML='<article class="panel"><p>Görseller yüklenemiyor.</p></article>'}}
 document.getElementById('show-admin').onclick=()=>{admin.style.display=admin.style.display==='none'?'block':'none';admin.scrollIntoView({behavior:'smooth'})};
 document.getElementById('admin-login-button').onclick=async()=>{try{await api('/.netlify/functions/admin-auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:document.getElementById('admin-password').value})});login.style.display='none';tools.style.display='block';msg.textContent='Giriş başarılı.';await load()}catch(e){msg.textContent=e.message}};
