@@ -141,6 +141,19 @@
  .member-preview{aspect-ratio:3 / 2}
 }
 
+/* Members gallery: size the frame from the image itself (no letterboxing or crop). */
+.members-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+.members-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-content:start;min-width:0}
+.member-card{min-width:0;aspect-ratio:auto!important;height:auto!important;padding:0;overflow:hidden;line-height:0;background:transparent;border:1px solid #7b3825}
+.member-card:before{display:none}
+.member-art{display:block;width:100%;height:auto!important;aspect-ratio:auto!important;object-fit:unset!important;object-position:initial;background:transparent!important;border:0!important}
+.member-preview{position:static;top:auto;min-width:0;min-height:0;height:auto!important;aspect-ratio:auto!important;padding:0;display:block;overflow:visible;background:transparent;border:0;box-shadow:none}
+.member-preview img{display:block;width:100%;height:auto!important;max-width:100%;max-height:none!important;aspect-ratio:auto!important;object-fit:unset!important;object-position:initial;background:transparent!important;border:1px solid #7b3825;box-sizing:border-box}
+.member-pagination{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0}
+.member-page{min-width:38px;padding:9px 12px;border:1px solid #71351f;border-radius:6px;background:#160d0a;color:#f4dfc6;cursor:pointer}
+.member-page.active{background:#9e2c18;border-color:#f1a14c}
+@media(max-width:760px){.members-layout{grid-template-columns:1fr}.member-preview{position:static;order:-1}}
+@media(max-width:460px){.members-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 <style id="azeroth-brighter-background">
 /* Scenic background is for the page body only; the hero's existing artwork remains untouched. */
